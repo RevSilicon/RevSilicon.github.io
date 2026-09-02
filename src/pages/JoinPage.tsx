@@ -22,7 +22,8 @@ function PathSplit() {
       >
         <img src={logoPlateCleanUrl} alt="" className="path-panel-mark" aria-hidden="true" />
         <p className="path-panel-index">01</p>
-        <h3>Bootcamp</h3>
+        <h3>Rev Bootcamp</h3>
+        <p className="path-panel-status">Coming soon</p>
         <p className="path-panel-tag">New to chip design</p>
         <ul className="path-panel-detail">
           <li>Runs one semester, start to finish</li>

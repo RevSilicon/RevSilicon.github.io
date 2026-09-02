@@ -2165,10 +2165,22 @@ button {
 
 .path-panel-index,
 .path-panel h3,
+.path-panel-status,
 .path-panel-tag,
 .path-panel-detail {
   position: relative;
   z-index: 1;
+}
+
+.path-panel-status {
+  margin: 10px 0 2px;
+  padding: 5px 10px;
+  color: rgba(251, 250, 246, 0.86);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border: 1px solid rgba(251, 250, 246, 0.34);
 }
 
 .path-panel-index {
