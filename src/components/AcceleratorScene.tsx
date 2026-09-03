@@ -521,11 +521,11 @@ export function AcceleratorScene() {
       <canvas
         ref={canvasRef}
         className="accelerator-canvas"
-        aria-label="Interactive conceptual GPU accelerator. Drag to rotate and double-click to reset."
+        aria-label="Interactive conceptual AI inference accelerator. Drag to rotate and double-click to reset."
       />
       <div className="accelerator-meta" aria-hidden="true">
         <span>ACCELERATOR I / CONCEPT MODEL</span>
-        <span>RISC-V GPGPU CLASS · NOT TO SPECIFICATION</span>
+        <span>INFERENCE ACCELERATOR CLASS · NOT TO SPECIFICATION</span>
       </div>
       <button className="reset-view" type="button" onClick={() => resetRef.current?.()}>
         Reset view

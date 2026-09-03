@@ -10,7 +10,7 @@ function ProjectBlueprint() {
   return (
     <figure className="project-blueprint">
       <svg viewBox="0 0 620 460" role="img" aria-labelledby="project-blueprint-title">
-        <title id="project-blueprint-title">Concept view of an open GPU system</title>
+        <title id="project-blueprint-title">Concept view of an AI inference accelerator</title>
         <rect className="blueprint-board" x="24" y="24" width="572" height="412" rx="6" />
         <path className="blueprint-trace" d="M74 126H116M504 126H548M74 334H116M504 334H548M310 72V104M310 356V388" />
         <rect className="blueprint-die" x="116" y="104" width="388" height="252" rx="4" />
@@ -82,7 +82,7 @@ export function HomePage() {
         <div className="container building-layout">
           <Reveal className="building-copy">
             <p className="micro-label">THE FIRST BUILD</p>
-            <h2 id="building-heading">GPU + <br />AI Inference</h2>
+            <h2 id="building-heading">AI Inference<br />Accelerator</h2>
             <p>A single design carried through architecture, RTL, verification, and physical design.</p>
             <Link className="text-link light" to="/projects">View the project <span aria-hidden="true">↗</span></Link>
           </Reveal>

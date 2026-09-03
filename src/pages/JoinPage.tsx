@@ -46,7 +46,7 @@ function PathSplit() {
         <h3>CORE team</h3>
         <p className="path-panel-tag">Already comfortable with the basics</p>
         <ul className="path-panel-detail">
-          <li>Work directly on the GPU + AI inference chip</li>
+          <li>Work directly on the AI inference accelerator</li>
           <li>Run the full ASIC flow, start to finish</li>
           <li>Build alongside members who've done it before</li>
         </ul>

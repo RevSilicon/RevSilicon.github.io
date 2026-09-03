@@ -251,7 +251,7 @@ export const site = {
 
   project: {
     eyebrow: 'Project 01',
-    title: 'A GPU with AI inference acceleration',
+    title: 'An AI inference accelerator',
     description:
       'Our first chip, built on the open-source Vortex GPGPU.',
     attributes: ['RISC-V, Vortex-based', 'Open-source PDK flow', 'Targeting a 2027 shuttle'] as const,

@@ -84,7 +84,7 @@ export default function ProjectsPage() {
           <Reveal className="brief-copy">
             <h2 id="brief-heading">AI inference.</h2>
             <p>
-              Students run AI workloads on an open RISC-V GPU, then measure what makes them faster.
+              Students run AI workloads on the accelerator, then measure what makes them faster.
             </p>
             <dl className="inference-focus">
               {inferenceFocus.map(([title, detail], index) => (
