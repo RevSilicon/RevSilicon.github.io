@@ -15,7 +15,7 @@ function InferencePathVisual() {
   return (
     <figure className="inference-path" aria-labelledby="inference-path-title">
       <figcaption>
-        <span>VORTEX + AI</span>
+        <span>RISC-V + AI</span>
         <strong id="inference-path-title">Inference data flow</strong>
       </figcaption>
       <div className="inference-flow">
@@ -27,7 +27,7 @@ function InferencePathVisual() {
         <i className="inference-arrow" aria-hidden="true" />
         <div className="inference-node inference-node-core">
           <span>02</span>
-          <strong>Vortex</strong>
+          <strong>Accelerator</strong>
           <small>Parallel RISC-V kernels</small>
         </div>
         <i className="inference-arrow" aria-hidden="true" />
@@ -62,14 +62,6 @@ export default function ProjectsPage() {
           </div>
           <div className="project-lede">
             <p>{site.project.description}</p>
-            <a
-              className="text-link muted vortex-credit"
-              href="https://github.com/vortexgpgpu/vortex"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Click here for Vortex&apos;s GitHub <span aria-hidden="true">↗</span>
-            </a>
           </div>
         </div>
         <div className="accelerator-stage">

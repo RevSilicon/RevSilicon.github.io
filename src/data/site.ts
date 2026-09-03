@@ -253,8 +253,8 @@ export const site = {
     eyebrow: 'Project 01',
     title: 'An AI inference accelerator',
     description:
-      'Our first chip, built on the open-source Vortex GPGPU.',
-    attributes: ['RISC-V, Vortex-based', 'Open-source PDK flow', 'Targeting a 2027 shuttle'] as const,
+      'Our first chip, a RISC-V inference accelerator of our own design.',
+    attributes: ['RISC-V based', 'Open-source PDK flow', 'Targeting a 2027 shuttle'] as const,
   },
 
   officerGroups,
