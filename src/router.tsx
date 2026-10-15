@@ -17,7 +17,8 @@ type RouterContextValue = {
 };
 
 const RouterContext = createContext<RouterContextValue | null>(null);
-const validPaths = new Set(['/', '/about', '/projects', '/join', '/sponsor']);
+/** `/about` (the Team page) is parked, so it falls through to Home. */
+const validPaths = new Set(['/', '/projects', '/join', '/sponsor']);
 const appBasePathWithoutTrailingSlash = appBasePath.replace(/\/$/, '');
 
 function normalizePath(pathname: string) {

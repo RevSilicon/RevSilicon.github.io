@@ -70,6 +70,7 @@ function OfficerDialog({
   );
 }
 
+/** Parked: the Team / officers page. Not routed or linked from the nav. */
 export default function AboutPage() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const cardRefs = useRef(new Map<number, HTMLButtonElement>());

@@ -25,21 +25,39 @@ npm run build
 npm run preview
 ```
 
-The production output is written to `dist/`. The host must serve `index.html` as the fallback for `/about`, `/projects`, `/join`, and `/sponsor`, because routing uses the browser History API.
+The production output is written to `dist/`. The host must serve `index.html` as the fallback for `/projects`, `/join`, and `/sponsor`, because routing uses the browser History API. `/about` (the Team page) is parked and redirects to Home.
 
 ## Project structure
 
 - `src/data/site.ts` — all editable copy: navigation, mission, values, process stages, teams, event calendar, project schedule, and the org chart
-- `src/pages/` — Home, Team (`/about`), Projects, Join, and Sponsor routes
-- `src/components/HeroReveille.tsx` — animated home hero; an eight-cell Reveille run cycle cross-dissolved into a continuous gait
+- `src/pages/` — Home, Projects, Join, and Sponsor routes. Three pages are parked (kept, not routed): `AboutPage.tsx` (Team / officers), `ProjectsPageFull.tsx` (the full Projects page), and `HomePageClassic.tsx` (the Home page before the dark redesign). To restore one, add it back in `App.tsx`, `validPaths` in `router.tsx`, and `site.nav`.
+- `src/components/CircuitField.tsx` — fixed backdrop on every page: two-tone (maroon and navy) procedurally routed traces, travelling signals, and traces that light up under the cursor
+- `src/components/ChipEmblem.tsx` — Home hero chip: the wolf mark in a neon package with fanned-out leads and inbound pulses
+- `src/components/DecodeText.tsx` — scramble-in reveal used for the P.O.L.I.T.E name
+- `src/components/Wafer.tsx` — Sponsor hero: a tilted, slowly turning wafer with a probe sweep rippling out from our chip
+- `src/components/ClosingCta.tsx` — the flicker-grid join band that closes the Home page
+- `src/components/HeroReveille.tsx` — the earlier Reveille run-cycle hero, used only by the parked classic Home page
 - `src/components/EventChart.tsx` — club calendar plotted as a rising chart with click-to-open detail
 - `src/logoMark.ts` — crop box that reduces the logo plate to Reveille alone
 - `src/components/ProcessFlow.tsx` — the six-stage "concept to silicon" diagram set
 - `src/components/ProjectTimeline.tsx` — architecture-to-tapeout schedule rail
-- `src/components/AcceleratorScene.tsx` — interactive conceptual accelerator built from Three.js primitives (Projects page)
+- `src/components/ChipScene.tsx` — the accelerator module rebuilt in Three.js from `assets/chip-module.webp`, with a drop-in assembly intro (Projects page)
+- `src/components/ArchitectureStack.tsx` — CSS 3D exploded view of the architecture layers (Projects page)
+- `src/components/AcceleratorScene.tsx` — the earlier graphics-card concept model, used only by the parked full Projects page
 - `src/components/FlickerGrid.tsx` — home CTA canvas treatment
 - `src/styles.css` — global design system, motion, accessibility, and responsive layouts
 - `assets/logo-mark.png`, `assets/logo-plate.png`, and `assets/dog-run-cycle-white.png` — supplied brand art and the generated hero run cycle
+
+## Design system
+
+Keep pages quiet: a headline, the real content, and a visual. No section numbers, kicker labels, or caption text.
+
+- `Sheet` (`src/components/Sheet.tsx`): a section with a heading, its content, and an optional full-width `wide` visual. Sections are separated by a single hairline.
+- `SpecRows`: ruled rows (title, then detail) instead of boxed card grids.
+- `Figure`: a plain panel for illustrations.
+- `ChipSpecs`: the chip's public spec as a ruled table (Projects hero). A `null` value renders redacted.
+- Buttons (`.fx-button`): solid Aggie maroon with one cut corner. `.is-ghost` is the hairline secondary.
+- Type: Archivo with its width axis opened up for headlines (`--stretch-display`, `--stretch-heading`). Sizes come from the `--fs-*` tokens.
 
 ## Editing content
 
@@ -69,13 +87,13 @@ No em dashes or en dashes anywhere in the copy. Use a period, a colon, or a comm
 
 ## Replacing the accelerator
 
-The Projects centerpiece is a lightweight conceptual accelerator assembled in `buildAccelerator()` inside `src/components/AcceleratorScene.tsx`. It intentionally avoids implying a final board specification.
+The Projects centerpiece is the module assembled in `buildModule()` inside `src/components/ChipScene.tsx`. Parts are laid out in `LAYOUT` using the pixel coordinates of `assets/chip-module.webp`, so the model stays in register with that render. It intentionally avoids implying a final board specification.
 
 To replace it with an approved production model:
 
 1. Put an optimized `.glb` model in `public/models/`.
-2. Replace `buildAccelerator()` with a `GLTFLoader` load path.
-3. Preserve the existing camera, drag/reset controls, pointer lighting, visibility pause, pixel-ratio cap, reduced-motion behavior, and `StaticAccelerator` fallback.
+2. Replace `buildModule()` with a `GLTFLoader` load path.
+3. Preserve the existing camera fit, drag-to-tilt, pointer lighting, visibility pause, pixel-ratio cap, reduced-motion behavior, and the `chip-module.webp` fallback.
 4. Keep the model lazy-loaded from `ProjectsPage.tsx` so it does not block the first text paint.
 
 ## Accessibility and performance

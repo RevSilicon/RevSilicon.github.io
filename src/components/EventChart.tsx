@@ -30,8 +30,9 @@ function buildSmoothPath(points: readonly ChartPoint[]) {
   }, `M ${first.x.toFixed(1)} ${first.y.toFixed(1)}`);
 }
 
+/** The club year as a rising chart with click-to-open detail. Framed by the page as a figure. */
 export function EventChart() {
-  const sectionRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLElement>(null);
   const pointRefs = useRef(new Map<string, SVGGElement>());
   const cardId = useId();
@@ -96,22 +97,8 @@ export function EventChart() {
   };
 
   return (
-    <section
-      id="calendar"
-      ref={sectionRef}
-      className={`calendar-section ${visible ? 'is-visible' : ''}`}
-      aria-labelledby="calendar-heading"
-    >
-      <div className="container">
-        <div className="calendar-heading">
-          <div>
-            <h2 id="calendar-heading">Club calendar</h2>
-          </div>
-          <p className="calendar-note">Events to be decided. Sample events shown.</p>
-        </div>
-
-        <figure className={`calendar-figure ${open ? 'has-open-card' : ''}`}>
-          <p className="chart-hint">Select an event</p>
+    <div ref={sectionRef} className={`calendar ${visible ? 'is-visible' : ''}`}>
+        <div className={`calendar-figure ${open ? 'has-open-card' : ''}`}>
           <div className="chart-scroll" role="group" tabIndex={0} aria-label="Scrollable club event map">
             <svg viewBox={`0 0 ${VIEW.width} ${VIEW.height}`} role="group" aria-labelledby={chartTitleId}>
               <title id={chartTitleId}>The recurring rhythm of Rev Silicon club events</title>
@@ -122,7 +109,6 @@ export function EventChart() {
                 {points.map((point, index) => {
                   const above = point.side === 'above';
                   const titleY = above ? point.y - 48 : point.y + 58;
-                  const phaseY = above ? point.y - 70 : point.y + 80;
                   const leaderStart = above ? point.y - 14 : point.y + 14;
                   const leaderEnd = above ? point.y - 34 : point.y + 34;
                   const isOpen = openId === point.id;
@@ -145,7 +131,6 @@ export function EventChart() {
                       onKeyDown={(event) => handlePointKeyDown(event, point.id)}
                     >
                       <line className="point-leader" x1={point.x} y1={leaderStart} x2={point.x} y2={leaderEnd} />
-                      <text className="point-phase" x={point.x} y={phaseY} textAnchor="middle">{point.phase.toUpperCase()}</text>
                       <text className="point-name" x={point.x} y={titleY} textAnchor="middle">{point.label}</text>
                       <circle className="point-halo" cx={point.x} cy={point.y} r="14" />
                       <circle className="point-dot" cx={point.x} cy={point.y} r="6" />
@@ -179,8 +164,7 @@ export function EventChart() {
               </article>
             </div>
           ) : null}
-        </figure>
-      </div>
-    </section>
+        </div>
+    </div>
   );
 }

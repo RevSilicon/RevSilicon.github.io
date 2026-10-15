@@ -39,6 +39,7 @@ export type Value = {
   readonly detail: string;
 };
 
+
 export type Officer = {
   readonly role: string;
   readonly name?: string;
@@ -46,6 +47,20 @@ export type Officer = {
   readonly major?: string;
   readonly gradYear?: string;
   readonly bio?: string;
+};
+
+export type TeaserSpec = {
+  readonly label: string;
+  /** `null` renders as a redacted bar until the full reveal. */
+  readonly value: string | null;
+  /** Adds the pulsing "in progress" dot. */
+  readonly live?: boolean;
+};
+
+export type ArchitectureLayer = {
+  readonly id: 'package' | 'compute' | 'control' | 'memory';
+  readonly name: string;
+  readonly detail: string;
 };
 
 export type OfficerGroup = {
@@ -114,7 +129,6 @@ const officerGroups: readonly OfficerGroup[] = [
       { role: 'Physical design lead', name: 'Samhith Komatreddy' },
       { role: 'Physical design lead', name: 'Sri Hari Ravishankar' },
       { role: 'AI lead', name: 'Alex Stevens' },
-      { role: 'AI lead', name: 'Tanvi Aggarwal' },
     ],
   },
   {
@@ -132,10 +146,21 @@ const officerGroups: readonly OfficerGroup[] = [
   },
 ];
 
+/** The first chip's name, used across Home, Projects, the footer, and the 3D model. */
+export const chipName = 'P.O.L.I.T.E';
+
+
+/** Typed separately for the same reason as `officerGroups`: `live` is optional. */
+const teaserSpecs: readonly TeaserSpec[] = [
+  { label: 'ISA', value: 'RISC-V' },
+  { label: 'Compute', value: null },
+  { label: 'Status', value: 'Architecture', live: true },
+  { label: 'Tapeout', value: '2027' },
+];
+
 export const site = {
   nav: [
     { label: 'Home', to: '/' },
-    { label: 'Team', to: '/about' },
     { label: 'Projects', to: '/projects' },
     { label: 'Join', to: '/join' },
     { label: 'Sponsor', to: '/sponsor' },
@@ -256,6 +281,29 @@ export const site = {
       'Our first chip, a RISC-V inference accelerator of our own design.',
     attributes: ['RISC-V based', 'Open-source PDK flow', 'Targeting a 2027 shuttle'] as const,
   },
+
+  home: {
+    lede: 'We take a chip from architecture to tapeout. No experience needed.',
+    build: {
+      description: 'Our AI inference accelerator, carried through architecture, RTL, verification, and physical design.',
+    },
+  },
+
+  /** The Projects page while the accelerator is still in design. */
+  teaser: {
+    title: chipName,
+    tagline: 'Coming soon.',
+    description: 'A RISC-V AI inference accelerator, designed by Aggies from architecture to tapeout.',
+    specs: teaserSpecs,
+  },
+
+  /** Exploded stack on the Projects page, top layer first. A concept view, not the final block diagram. */
+  architecture: [
+    { id: 'package', name: 'Package', detail: 'Heat spreader, pinout, and the Rev mark.' },
+    { id: 'compute', name: 'Compute', detail: 'Parallel RISC-V cores for inference kernels.' },
+    { id: 'control', name: 'Control', detail: 'Schedules work across the array.' },
+    { id: 'memory', name: 'Memory', detail: 'On-chip SRAM on a shared data path.' },
+  ] satisfies readonly ArchitectureLayer[],
 
   officerGroups,
 } as const;

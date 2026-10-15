@@ -80,19 +80,27 @@ function SocialLinks() {
 function Footer() {
   return (
     <footer className="site-footer">
-      <div className="container footer-inner">
-        <nav className="footer-nav" aria-label="Footer navigation">
+      <div className="footer-trace" aria-hidden="true"><span /></div>
+      <div className="container footer-main">
+        <div className="footer-brand">
+          <Link className="footer-logo" to="/">
+            <img src={revsiliconLogoUrl} alt="" />
+            <span>REV SILICON</span>
+          </Link>
+          <p>Texas A&amp;M students taking a chip from architecture to tapeout.</p>
+        </div>
+
+        <nav className="footer-links" aria-label="Footer navigation">
           {site.nav.map((item) => <Link key={item.to} to={item.to}>{item.label}</Link>)}
         </nav>
 
-        <div className="footer-contact">
+        <div className="footer-reach">
           <a className="footer-email" href={`mailto:${contact.email}`}>{contact.email}</a>
           <SocialLinks />
         </div>
       </div>
-      <div className="container footer-bottom">
-        <p>© 2026 REV SILICON</p>
-        <p>TEXAS A&amp;M UNIVERSITY</p>
+      <div className="container footer-fine">
+        <p>© 2026 Rev Silicon · Texas A&amp;M University</p>
       </div>
     </footer>
   );
