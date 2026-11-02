@@ -25,12 +25,12 @@ npm run build
 npm run preview
 ```
 
-The production output is written to `dist/`. The host must serve `index.html` as the fallback for `/projects`, `/join`, and `/sponsor`, because routing uses the browser History API. `/about` (the Team page) is parked and redirects to Home.
+The production output is written to `dist/`. The host must serve `index.html` as the fallback for `/about`, `/projects`, `/join`, and `/sponsor`, because routing uses the browser History API.
 
 ## Project structure
 
 - `src/data/site.ts` — all editable copy: navigation, mission, values, process stages, teams, event calendar, project schedule, and the org chart
-- `src/pages/` — Home, Projects, Join, and Sponsor routes. Three pages are parked (kept, not routed): `AboutPage.tsx` (Team / officers), `ProjectsPageFull.tsx` (the full Projects page), and `HomePageClassic.tsx` (the Home page before the dark redesign). To restore one, add it back in `App.tsx`, `validPaths` in `router.tsx`, and `site.nav`.
+- `src/pages/` — Home, Team (`/about`), Projects, Join, and Sponsor routes. Two pages are parked (kept, not routed): `ProjectsPageFull.tsx` (the full Projects page) and `HomePageClassic.tsx` (the Home page before the dark redesign). To restore one, add it back in `App.tsx`, `validPaths` in `router.tsx`, and `site.nav`.
 - `src/components/CircuitField.tsx` — fixed backdrop on every page: two-tone (maroon and navy) procedurally routed traces, travelling signals, and traces that light up under the cursor
 - `src/components/ChipEmblem.tsx` — Home hero chip: the wolf mark in a neon package with fanned-out leads and inbound pulses
 - `src/components/DecodeText.tsx` — scramble-in reveal used for the P.O.L.I.T.E name

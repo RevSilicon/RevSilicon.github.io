@@ -1,8 +1,18 @@
 import { useEffect, useId, useRef, useState } from 'react';
+import { revsiliconLogoUrl } from '../assets';
+import { CircuitField } from '../components/CircuitField';
 import { Reveal } from '../components/Reveal';
-import { logoMarkUrl } from '../assets';
+import { Sheet } from '../components/Sheet';
 import { site } from '../data/site';
 import type { Officer } from '../data/site';
+
+function Portrait({ officer, className }: { officer: Officer; className: string }) {
+  return (
+    <span className={className}>
+      <img src={officer.photo ?? revsiliconLogoUrl} alt="" className={officer.photo ? undefined : 'is-placeholder'} />
+    </span>
+  );
+}
 
 function OfficerDialog({
   officer,
@@ -47,30 +57,20 @@ function OfficerDialog({
           <span aria-hidden="true" />
         </button>
 
-        <div className="officer-dialog-media">
-          <div className="officer-dialog-portrait">
-            <img src={officer.photo ?? logoMarkUrl} alt="" className={officer.photo ? '' : 'is-placeholder'} />
-          </div>
-          <p className="micro-label maroon-text">{officer.role}</p>
-          <h3 id={titleId}>{officer.name ?? officer.role}</h3>
-        </div>
+        <Portrait officer={officer} className="officer-dialog-portrait" />
 
         <div className="officer-dialog-info">
-          <div className="officer-dialog-field">
-            <p className="micro-label">Major &amp; graduation</p>
-            <p>{meta ?? 'Details coming soon.'}</p>
-          </div>
-          <div className="officer-dialog-field">
-            <p className="micro-label">Bio</p>
-            <p>{officer.bio ?? 'Profile coming soon, check back after officer elections wrap up.'}</p>
-          </div>
+          <p className="officer-dialog-role">{officer.role}</p>
+          <h3 id={titleId}>{officer.name ?? officer.role}</h3>
+          {meta ? <p className="officer-dialog-meta">{meta}</p> : null}
+          <p className="officer-dialog-bio">{officer.bio ?? 'Profile coming soon.'}</p>
         </div>
       </article>
     </div>
   );
 }
 
-/** Parked: the Team / officers page. Not routed or linked from the nav. */
+/** The officers, grouped by role. Each card opens a profile with the officer's bio. */
 export default function AboutPage() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const cardRefs = useRef(new Map<number, HTMLButtonElement>());
@@ -102,61 +102,55 @@ export default function AboutPage() {
   ).starts;
 
   return (
-    <main id="main-content" className="inner-page about-page">
-      <section className="officers-section" aria-labelledby="officers-heading">
-        <div className="inner-hero team-hero">
-          <div className="container team-hero-content">
-            <h1 id="officers-heading">Meet the officers</h1>
-          </div>
-        </div>
-
-        <div className="container">
-          {site.officerGroups.map((group, groupIndex) => {
-            const startIndex = groupStartIndices[groupIndex] ?? 0;
-
-            return (
-              <div key={group.title} className="officer-group">
-                <Reveal className="officer-group-title">
-                  <h2>{group.title}</h2>
-                </Reveal>
-                <div className="officer-grid">
-                  {group.officers.map((officer, position) => {
-                    const index = startIndex + position;
-                    return (
-                      <Reveal key={`${group.title}-${officer.role}-${position}`} delay={position * 70} className="officer-card-wrap">
-                        <button
-                          type="button"
-                          className="officer-card"
-                          ref={(node) => {
-                            if (node) cardRefs.current.set(index, node);
-                            else cardRefs.current.delete(index);
-                          }}
-                          onClick={() => setOpenIndex(index)}
-                          aria-haspopup="dialog"
-                        >
-                          <span className="officer-expand" aria-hidden="true">+</span>
-                          <div className="portrait-placeholder" role="img" aria-label={`${officer.name ?? officer.role} portrait`}>
-                            <img src={officer.photo ?? logoMarkUrl} alt="" className={officer.photo ? '' : 'is-placeholder'} />
-                          </div>
-                          <div className="officer-card-copy">
-                            <h3>{officer.name ?? officer.role}</h3>
-                            <p>{officer.name ? officer.role : 'Profile coming soon'}</p>
-                            <span className="officer-view-hint">View profile <span aria-hidden="true">↗</span></span>
-                          </div>
-                        </button>
-                      </Reveal>
-                    );
-                  })}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
+    <main id="main-content" className="inner-page about-page fx-page">
+      <CircuitField />
 
       {openOfficer ? (
         <OfficerDialog officer={openOfficer} titleId={titleId} onClose={closeDialog} />
       ) : null}
+
+      <section className="fx-page-hero team-hero" aria-labelledby="officers-heading">
+        <div className="container">
+          <h1 id="officers-heading">
+            <span className="fx-line">Meet the</span>
+            <span className="fx-line fx-line-accent">officers</span>
+          </h1>
+        </div>
+      </section>
+
+      {site.officerGroups.map((group, groupIndex) => {
+        const startIndex = groupStartIndices[groupIndex] ?? 0;
+
+        return (
+          <Sheet key={group.title} title={group.title} className="officer-group">
+            <div className="officer-grid">
+              {group.officers.map((officer, position) => {
+                const index = startIndex + position;
+                return (
+                  <Reveal key={`${group.title}-${officer.role}-${position}`} delay={position * 70}>
+                    <button
+                      type="button"
+                      className="officer-card"
+                      ref={(node) => {
+                        if (node) cardRefs.current.set(index, node);
+                        else cardRefs.current.delete(index);
+                      }}
+                      onClick={() => setOpenIndex(index)}
+                      aria-haspopup="dialog"
+                    >
+                      <Portrait officer={officer} className="officer-portrait" />
+                      <span className="officer-card-copy">
+                        <span className="officer-name">{officer.name ?? officer.role}</span>
+                        <span className="officer-role">{officer.name ? officer.role : 'Profile coming soon'}</span>
+                      </span>
+                    </button>
+                  </Reveal>
+                );
+              })}
+            </div>
+          </Sheet>
+        );
+      })}
     </main>
   );
 }

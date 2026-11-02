@@ -161,6 +161,7 @@ const teaserSpecs: readonly TeaserSpec[] = [
 export const site = {
   nav: [
     { label: 'Home', to: '/' },
+    { label: 'Team', to: '/about' },
     { label: 'Projects', to: '/projects' },
     { label: 'Join', to: '/join' },
     { label: 'Sponsor', to: '/sponsor' },

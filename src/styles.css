@@ -121,8 +121,7 @@ button {
 .process-number,
 .team-index,
 .project-attributes dt,
-.phase-window,
-.officer-index {
+.phase-window {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 11px;
   font-weight: 500;
@@ -953,310 +952,6 @@ button {
   animation: fade-up 700ms 180ms both;
 }
 
-/* About / Team */
-
-.team-hero {
-  min-height: 360px;
-  display: flex;
-  align-items: center;
-  background:
-    radial-gradient(circle at 84% 42%, rgba(207, 93, 104, 0.24), transparent 30%),
-    linear-gradient(128deg, #260000 0%, var(--maroon) 52%, #671018 78%, var(--navy-deep) 100%);
-}
-
-.team-hero::before {
-  position: absolute;
-  inset: 0;
-  content: '';
-  background-image: radial-gradient(rgba(251, 250, 246, 0.12) 0.8px, transparent 0.8px);
-  background-size: 18px 18px;
-  mask-image: linear-gradient(90deg, transparent 40%, #000 100%);
-}
-
-.team-hero-content {
-  position: relative;
-  z-index: 2;
-}
-
-.team-hero h1 { max-width: 850px; }
-
-.officers-section { background: var(--cream); }
-
-.officers-section > .container {
-  padding-top: clamp(64px, 7vw, 100px);
-  padding-bottom: clamp(84px, 9vw, 140px);
-}
-
-.officer-group { margin-top: clamp(56px, 6vw, 88px); }
-.officer-group:first-child { margin-top: 0; }
-
-.officer-group-title h2 {
-  margin: 0 0 26px;
-  padding-bottom: 14px;
-  color: var(--navy);
-  font-size: clamp(19px, 1.8vw, 24px);
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  border-bottom: 1px solid var(--line);
-}
-
-.officer-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 20px;
-}
-
-.officer-card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 0;
-  overflow: hidden;
-  color: inherit;
-  text-align: left;
-  cursor: pointer;
-  background: var(--white);
-  border: 1px solid var(--line);
-  transition: border-color 180ms ease, box-shadow 180ms ease;
-  font: inherit;
-}
-
-.officer-card:hover,
-.officer-card:focus-visible {
-  border-color: var(--line-strong);
-  box-shadow: 0 18px 42px rgba(20, 26, 32, 0.09);
-}
-
-.officer-card:focus-visible { outline: 2px solid var(--maroon); outline-offset: 2px; }
-
-.officer-index {
-  position: absolute;
-  z-index: 2;
-  top: 14px;
-  left: 14px;
-  min-width: 35px;
-  padding: 6px 7px;
-  color: var(--white);
-  text-align: center;
-  background: var(--maroon);
-}
-
-.officer-expand {
-  position: absolute;
-  z-index: 2;
-  top: 14px;
-  right: 14px;
-  display: grid;
-  width: 27px;
-  height: 27px;
-  place-items: center;
-  color: var(--maroon);
-  font-size: 15px;
-  line-height: 1;
-  background: var(--white);
-  border: 1px solid var(--line);
-  transition: color 180ms ease, border-color 180ms ease, background 180ms ease, transform 180ms ease;
-}
-
-.officer-card:hover .officer-expand,
-.officer-card:focus-visible .officer-expand {
-  color: var(--white);
-  background: var(--maroon);
-  border-color: var(--maroon);
-  transform: rotate(90deg);
-}
-
-.portrait-placeholder {
-  position: relative;
-  display: grid;
-  aspect-ratio: 4 / 5;
-  place-items: center;
-  overflow: hidden;
-  background:
-    repeating-linear-gradient(135deg, transparent 0 12px, rgba(11, 26, 46, 0.05) 12px 13px),
-    var(--cream-deep);
-  border-bottom: 1px solid var(--line);
-}
-
-.portrait-placeholder img.is-placeholder {
-  width: 52%;
-  opacity: 0.16;
-  filter: grayscale(1);
-}
-
-.portrait-placeholder img:not(.is-placeholder) {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.officer-card-copy { padding: 22px 22px 24px; }
-
-.officer-card-copy h3 {
-  margin: 0;
-  color: var(--navy);
-  font-size: clamp(19px, 1.8vw, 24px);
-  font-weight: 500;
-  letter-spacing: -0.025em;
-}
-
-.officer-card-copy p {
-  margin: 8px 0 0;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.6;
-}
-
-.officer-view-hint {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 16px;
-  color: var(--red);
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  opacity: 0.68;
-  transition: opacity 180ms ease, gap 180ms ease;
-}
-
-.officer-card:hover .officer-view-hint,
-.officer-card:focus-visible .officer-view-hint {
-  gap: 10px;
-  opacity: 1;
-}
-
-/* Officer profile dialog */
-
-.officer-dialog-layer {
-  position: fixed;
-  z-index: 200;
-  inset: 0;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  padding: 24px;
-  place-items: center;
-}
-
-.officer-dialog-backdrop {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  cursor: default;
-  background: rgba(5, 15, 28, 0.6);
-  backdrop-filter: blur(3px);
-  border: none;
-}
-
-.officer-dialog {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: minmax(0, 230px) minmax(0, 1fr);
-  gap: clamp(28px, 4vw, 48px);
-  width: min(100%, 760px);
-  max-height: min(88vh, 720px);
-  margin: 0;
-  padding: clamp(30px, 4vw, 46px);
-  overflow-y: auto;
-  background: var(--white);
-  border-top: 4px solid var(--maroon);
-  box-shadow: 0 32px 90px rgba(20, 5, 7, 0.32);
-  animation: detail-in 380ms cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.officer-dialog-media {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-
-.officer-dialog-portrait {
-  position: relative;
-  display: grid;
-  aspect-ratio: 4 / 5;
-  place-items: center;
-  overflow: hidden;
-  margin-bottom: 18px;
-  background:
-    repeating-linear-gradient(135deg, transparent 0 12px, rgba(11, 26, 46, 0.05) 12px 13px),
-    var(--cream-deep);
-  border: 1px solid var(--line);
-}
-
-.officer-dialog-portrait img.is-placeholder {
-  width: 46%;
-  opacity: 0.16;
-  filter: grayscale(1);
-}
-
-.officer-dialog-portrait img:not(.is-placeholder) {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.officer-dialog-media .micro-label { margin: 0 0 6px; }
-
-.officer-dialog-media h3 {
-  margin: 0;
-  color: var(--navy);
-  font-size: clamp(22px, 2.4vw, 28px);
-  font-weight: 500;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-}
-
-.officer-dialog-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 22px;
-  min-width: 0;
-}
-
-.officer-dialog-field { padding-top: 18px; border-top: 1px solid var(--line); }
-.officer-dialog-field:first-child { padding-top: 0; border-top: 0; }
-.officer-dialog-field .micro-label { margin: 0 0 8px; color: var(--red); }
-
-.officer-dialog-field p:not(.micro-label) {
-  max-width: 46ch;
-  margin: 0;
-  color: var(--muted);
-  font-size: 14.5px;
-  line-height: 1.72;
-}
-
-.officer-dialog-close {
-  position: absolute;
-  z-index: 2;
-  top: 18px;
-  right: 18px;
-  display: grid;
-  width: 38px;
-  height: 38px;
-  padding: 0;
-  place-items: center;
-  cursor: pointer;
-  background: var(--white);
-  border: 1px solid var(--line);
-  transition: color 180ms ease, border-color 180ms ease, background 180ms ease;
-}
-
-.officer-dialog-close span {
-  position: absolute;
-  width: 15px;
-  height: 1.5px;
-  background: var(--navy);
-  transform: rotate(45deg);
-}
-
-.officer-dialog-close span:last-child { transform: rotate(-45deg); }
-.officer-dialog-close:hover { background: var(--cream); border-color: var(--maroon); }
-
 /* Projects */
 
 .projects-hero { padding-bottom: 0; }
@@ -2072,7 +1767,6 @@ button {
   .process-rail > button:nth-of-type(n + 4) { border-top: 1px solid rgba(251, 250, 246, 0.08); }
   .process-detail { grid-template-columns: 1fr; }
   .process-detail-copy { border-right: 0; border-bottom: 1px solid rgba(251, 250, 246, 0.1); }
-  .officer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
   .calendar-figure svg { width: 1020px; max-width: none; }
 }
@@ -2098,16 +1792,6 @@ button {
   .hero-index { flex-direction: column; gap: 6px; bottom: 26px; font-size: 10px; }
   .inner-page { padding-top: 74px; }
   .inner-hero h1 { font-size: clamp(34px, 9.5vw, 46px); }
-  .team-hero { min-height: 260px; }
-  .officer-group-title h2 { font-size: 18px; }
-  .officer-grid { gap: 16px; }
-  .officer-card-copy { padding: 18px 16px 20px; }
-  .officer-card-copy h3 { font-size: 18px; }
-  .officer-card-copy p { font-size: 12px; }
-  .officer-dialog-layer { padding: 14px; }
-  .officer-dialog { grid-template-columns: 1fr; max-height: 92vh; padding: 30px 22px 26px; }
-  .officer-dialog-portrait { max-width: 190px; margin: 0 0 18px; }
-  .officer-dialog-close { top: 14px; right: 14px; }
   .process-rail { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .process-rail > button { padding: 18px 10px 20px; }
   .process-rail > button:nth-of-type(3) { border-right: 1px solid rgba(251, 250, 246, 0.08); }
@@ -3736,4 +3420,257 @@ button {
 @media (max-width: 640px) {
   .spec-row-inner { grid-template-columns: minmax(0, 1fr); padding-left: 14px; }
   .footer-main { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Team: officers on the dark surface */
+
+.team-hero {
+  min-height: 0;
+  padding: clamp(72px, 9vw, 128px) 0 clamp(8px, 1vw, 16px);
+}
+
+.about-page .sheet { padding-top: clamp(48px, 6vw, 88px); }
+.about-page .sheet-title { font-size: clamp(24px, 2.4vw, 34px); }
+
+.officer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(14px, 1.6vw, 22px);
+  margin-top: clamp(24px, 3vw, 40px);
+}
+
+.officer-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  background: var(--panel);
+  border: 1px solid var(--hairline);
+  transition: border-color 220ms ease;
+}
+
+/* A maroon rule draws across the card's foot on hover. */
+.officer-card::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  content: '';
+  background: var(--red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 360ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.officer-card:hover,
+.officer-card:focus-visible { border-color: rgba(217, 116, 126, 0.45); }
+
+.officer-card:hover::after,
+.officer-card:focus-visible::after { transform: scaleX(1); }
+
+.officer-card:focus-visible {
+  outline: 2px solid var(--red-highlight);
+  outline-offset: 3px;
+}
+
+.officer-portrait,
+.officer-dialog-portrait {
+  position: relative;
+  display: grid;
+  aspect-ratio: 4 / 5;
+  place-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 38%, rgba(80, 0, 0, 0.4), transparent 68%),
+    #0a1626;
+}
+
+.officer-portrait { border-bottom: 1px solid var(--hairline); }
+
+.officer-portrait img:not(.is-placeholder),
+.officer-dialog-portrait img:not(.is-placeholder) {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Photos sit slightly cool on the navy surface and warm up to full color on hover. */
+.officer-portrait img:not(.is-placeholder) {
+  filter: grayscale(0.35) brightness(0.92);
+  transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1), filter 400ms ease;
+}
+
+.officer-card:hover .officer-portrait img:not(.is-placeholder),
+.officer-card:focus-visible .officer-portrait img:not(.is-placeholder) {
+  filter: none;
+  transform: scale(1.04);
+}
+
+.officer-portrait img.is-placeholder,
+.officer-dialog-portrait img.is-placeholder {
+  width: 46%;
+  opacity: 0.3;
+}
+
+.officer-card-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 18px 20px;
+}
+
+.officer-name {
+  font-size: 18px;
+  font-weight: 500;
+  font-stretch: var(--stretch-heading);
+  letter-spacing: -0.02em;
+}
+
+.officer-role {
+  color: var(--text-dim);
+  font-size: 13px;
+}
+
+/* Profile dialog */
+
+.officer-dialog-layer {
+  position: fixed;
+  z-index: 200;
+  inset: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  padding: 24px;
+  place-items: center;
+}
+
+.officer-dialog-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: default;
+  background: rgba(3, 8, 15, 0.74);
+  backdrop-filter: blur(4px);
+  border: none;
+}
+
+.officer-dialog {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
+  gap: clamp(26px, 4vw, 44px);
+  align-items: center;
+  width: min(100%, 760px);
+  max-height: min(88vh, 720px);
+  margin: 0;
+  padding: clamp(28px, 4vw, 44px);
+  overflow-y: auto;
+  color: var(--white);
+  background: linear-gradient(160deg, #10213a, #081322);
+  border: 1px solid var(--hairline-strong);
+  box-shadow: inset 0 3px 0 var(--maroon), 0 40px 100px rgba(0, 0, 0, 0.6);
+  animation: detail-in 380ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.officer-dialog:focus-visible { outline: none; }
+.officer-dialog-portrait { border: 1px solid var(--hairline); }
+.officer-dialog-info { min-width: 0; }
+
+.officer-dialog-role {
+  margin: 0 0 8px;
+  color: var(--red-highlight);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.officer-dialog h3 {
+  margin: 0;
+  font-size: clamp(24px, 2.6vw, 32px);
+  font-weight: 500;
+  font-stretch: var(--stretch-heading);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.officer-dialog-meta {
+  margin: 10px 0 0;
+  color: var(--text-faint);
+  font-size: 14px;
+}
+
+.officer-dialog-bio {
+  margin: 22px 0 0;
+  color: var(--text-dim);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.officer-dialog-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  display: grid;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  place-items: center;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid var(--hairline-strong);
+  transition: background 180ms ease, border-color 180ms ease;
+}
+
+.officer-dialog-close span {
+  position: absolute;
+  width: 16px;
+  height: 1.5px;
+  background: var(--white);
+  transform: rotate(45deg);
+}
+
+.officer-dialog-close span:last-child { transform: rotate(-45deg); }
+
+.officer-dialog-close:hover {
+  background: rgba(80, 0, 0, 0.45);
+  border-color: var(--red-highlight);
+}
+
+@media (max-width: 1000px) {
+  .officer-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 760px) {
+  .officer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 640px) {
+  .officer-card-copy { padding: 14px 14px 16px; }
+  .officer-name { font-size: 16px; }
+  .officer-role { font-size: 12px; }
+  .officer-dialog-layer { padding: 14px; }
+
+  .officer-dialog {
+    grid-template-columns: minmax(0, 1fr);
+    max-height: 92vh;
+    padding: 28px 22px 26px;
+  }
+
+  .officer-dialog-portrait { max-width: 180px; }
+
+  .officer-dialog-close {
+    top: 14px;
+    right: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .officer-portrait img:not(.is-placeholder) { transition: none; }
 }
