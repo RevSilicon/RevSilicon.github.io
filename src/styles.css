@@ -3606,12 +3606,29 @@ button {
   font-size: 14px;
 }
 
+/* Role, name, and major sit above a hairline; the bio reads below it. */
+.officer-dialog-head {
+  padding: 0 48px 20px 0;
+  border-bottom: 1px solid var(--hairline);
+}
+
 .officer-dialog-bio {
-  margin: 22px 0 0;
+  max-width: 54ch;
+  margin: 20px 0 0;
   color: var(--text-dim);
   font-size: 16px;
   line-height: 1.7;
+  text-wrap: pretty;
 }
+
+.officer-dialog-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.officer-dialog-links .fx-button { min-height: 44px; }
 
 .officer-dialog-close {
   position: absolute;

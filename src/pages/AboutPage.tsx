@@ -60,10 +60,21 @@ function OfficerDialog({
         <Portrait officer={officer} className="officer-dialog-portrait" />
 
         <div className="officer-dialog-info">
-          <p className="officer-dialog-role">{officer.role}</p>
-          <h3 id={titleId}>{officer.name ?? officer.role}</h3>
-          {meta ? <p className="officer-dialog-meta">{meta}</p> : null}
+          <header className="officer-dialog-head">
+            <p className="officer-dialog-role">{officer.role}</p>
+            <h3 id={titleId}>{officer.name ?? officer.role}</h3>
+            {meta ? <p className="officer-dialog-meta">{meta}</p> : null}
+          </header>
           <p className="officer-dialog-bio">{officer.bio ?? 'Profile coming soon.'}</p>
+          {officer.links?.length ? (
+            <div className="officer-dialog-links">
+              {officer.links.map((link) => (
+                <a key={link.url} className="fx-button" href={link.url} target="_blank" rel="noreferrer">
+                  {link.label} <span aria-hidden="true">↗</span>
+                </a>
+              ))}
+            </div>
+          ) : null}
         </div>
       </article>
     </div>

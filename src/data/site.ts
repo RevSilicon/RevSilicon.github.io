@@ -1,4 +1,4 @@
-import { officerBhushanMunoliUrl, officerColyKugelUrl, officerPranavSenthilkumarUrl, officerTonyBuieUrl } from '../assets';
+import { officerBhushanMunoliUrl, officerColbyKugelUrl, officerPranavSenthilkumarUrl, officerTonyBuieUrl } from '../assets';
 
 export type NavItem = {
   readonly label: string;
@@ -47,6 +47,8 @@ export type Officer = {
   readonly major?: string;
   readonly gradYear?: string;
   readonly bio?: string;
+  /** Shown as buttons under the bio, e.g. a personal portfolio or LinkedIn. */
+  readonly links?: readonly { readonly label: string; readonly url: string }[];
 };
 
 export type TeaserSpec = {
@@ -101,16 +103,17 @@ const officerGroups: readonly OfficerGroup[] = [
         photo: officerTonyBuieUrl,
         major: 'Electrical Engineering',
         gradYear: '2028',
-        bio: 'Howdy, I\'m Tony! I have a deep interest in semiconductor design and fabrication. I firmly believe in educating the next-generation of engineers to bring genuine impact in the VLSI industry. I love meeting new people, and sipping espresso drinks and tea!',
+        bio: 'Howdy, I\'m Tony! I have a deep interest in semiconductor design and fabrication. I firmly believe in educating the next generation of engineers to bring genuine impact to the VLSI industry. I love meeting new people and sipping espresso drinks and tea!',
+        links: [{ label: 'Portfolio', url: 'https://personal-gpu-portfolio.vercel.app/' }],
       },
       { role: 'Technical president', name: 'Chinmaiyi' },
       {
         role: 'Operations president',
-        name: 'Coly Kugel',
-        photo: officerColyKugelUrl,
+        name: 'Colby Kugel',
+        photo: officerColbyKugelUrl,
         major: 'Electrical Engineering',
         gradYear: '2028',
-        bio: 'Howdy, I\'m a Junior Electrical Engineer with a passion for computer architecture, chip design/manufacturing, and sustainability. I believe in giving everyone an equal opportunity to explore their passions no matter who they are. I\'m very big into lifting, Legos, Marvel, DC, Star Wars, and Aggie Sports.',
+        bio: 'Howdy, I\'m Colby! I\'m a junior in electrical engineering with a passion for computer architecture, chip design and manufacturing, and sustainability. I believe in giving everyone an equal opportunity to explore their passions, no matter who they are. I\'m very big into lifting, Legos, Marvel, DC, Star Wars, and Aggie sports.',
       },
     ],
   },
@@ -124,11 +127,11 @@ const officerGroups: readonly OfficerGroup[] = [
         photo: officerBhushanMunoliUrl,
         major: 'Computer Engineering',
         gradYear: '2027',
-        bio: 'Howdy, I\'m Bhushan! I\'m a Master\'s engineering student, interested in chip design and fabrication. I\'m passionate about technology and building something meaningful. Other than this, I love playing music and meeting new people.',
+        bio: 'Howdy, I\'m Bhushan! I\'m a master\'s engineering student interested in chip design and fabrication. I\'m passionate about technology and building something meaningful. Outside of that, I love playing music and meeting new people.',
       },
       { role: 'Physical design lead', name: 'Samhith Komatreddy' },
       { role: 'Physical design lead', name: 'Sri Hari Ravishankar' },
-      { role: 'AI lead', name: 'Alex Stevens' },
+      { role: 'Architecture lead', name: 'Alex Stevens' },
     ],
   },
   {
