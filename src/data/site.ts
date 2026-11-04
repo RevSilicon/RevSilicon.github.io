@@ -1,4 +1,4 @@
-import { officerBhushanMunoliUrl, officerColbyKugelUrl, officerPranavSenthilkumarUrl, officerTonyBuieUrl } from '../assets';
+import { officerAlexStevensUrl, officerBhushanMunoliUrl, officerColbyKugelUrl, officerPranavSenthilkumarUrl, officerTonyBuieUrl } from '../assets';
 
 export type NavItem = {
   readonly label: string;
@@ -131,7 +131,15 @@ const officerGroups: readonly OfficerGroup[] = [
       },
       { role: 'Physical design lead', name: 'Samhith Komatreddy' },
       { role: 'Physical design lead', name: 'Sri Hari Ravishankar' },
-      { role: 'Architecture lead', name: 'Alex Stevens' },
+      {
+        role: 'Architecture lead',
+        name: 'Alex Stevens',
+        photo: officerAlexStevensUrl,
+        major: 'Electrical Engineering',
+        gradYear: '2028',
+        bio: 'Howdy, I\'m Alex! I\'m a junior electrical engineering student into chip design, semiconductor manufacturing, and AI. Outside of that, I\'m into bouldering, lifting, and reading. Always happy to talk silicon, and don\'t get me started on AI.',
+        links: [{ label: 'Website', url: 'https://alexnstevens.com' }],
+      },
     ],
   },
   {

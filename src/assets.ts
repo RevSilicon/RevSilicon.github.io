@@ -7,6 +7,7 @@ import officerTonyBuieUrl from '../assets/officers/tony-buie.webp';
 import officerColbyKugelUrl from '../assets/officers/colby_kugel.jpg';
 import officerPranavSenthilkumarUrl from '../assets/officers/Pranav_Senthilkumar.webp';
 import officerBhushanMunoliUrl from '../assets/officers/Bhushan_1.webp';
+import officerAlexStevensUrl from '../assets/officers/alex-stevens.webp';
 import revsiliconLogoUrl from '../assets/revsilicon-logo.webp';
 
 export {
@@ -19,5 +20,6 @@ export {
   officerColbyKugelUrl,
   officerPranavSenthilkumarUrl,
   officerBhushanMunoliUrl,
+  officerAlexStevensUrl,
   revsiliconLogoUrl,
 };
